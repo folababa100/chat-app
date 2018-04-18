@@ -13,11 +13,6 @@
   white-space: pre-wrap;
 }
 
-.ios-arrow-down {
-  margin: -1rem;
-  position: absolute;
-}
-
 .card-body {
   box-shadow: $box;
   border-radius: 0.7rem;
@@ -54,6 +49,10 @@
   position: absolute;
   left: 33rem;
   bottom: 85%;
+  cursor: pointer;
+}
+
+.ios-arrow-down {
   cursor: pointer;
 }
 

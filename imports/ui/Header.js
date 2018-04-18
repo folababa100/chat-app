@@ -23,10 +23,9 @@ export default class Header extends React.Component {
         <Ionicon className="icon__search1" icon="md-more" onClick={() => this.setState({ isOpen: true })} fontSize="35px" color="#fff" beat={true}/>
         <Modal
           isOpen={this.state.isOpen}
-          contentLabel="Add Link"
           onRequestClose={this.handleModalClose.bind(this)}
           ariaHideApp={false}
-          className="boxed-view__box1"
+          className="boxed-view__box1 box-align"
           overlayClassName="boxed-view1 boxed-view--modal1"
         >
           <Link className="a button1" to="/create">New Group</Link>

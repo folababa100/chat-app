@@ -47,11 +47,30 @@
   box-shadow: $box;
   width: 14rem;
   position: absolute;
-  top: 10%;
-  left: 14%;
   border: 1px solid rgba(0,0,0,.15);
   height: 30%;
   border-radius: 3%;
+}
+
+.boxed-view__box2 {
+  background: white;
+  text-align: center;
+  box-shadow: $box;
+  width: 9rem;
+  position: absolute;
+  border: 1px solid rgba(0,0,0,.15);
+  height: 22%;
+  border-radius: 3%;
+}
+
+.box-align {
+  top: 10%;
+  left: 14%;
+}
+
+.box-align1 {
+  top: 18%;
+  left: 47%;
 }
 
 .boxed-view__form1 {

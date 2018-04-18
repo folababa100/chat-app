@@ -2,8 +2,8 @@ import React from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 import Modal from 'react-modal'
 import { Meteor } from "meteor/meteor";
-import PropTypes from 'prop-types'
-import PrivateHeader from './PrivateHeader'
+import PropTypes from 'prop-types';
+import PrivateHeader from './PrivateHeader';
 
 export default class CreateChat extends React.Component {
   constructor(props) {
@@ -59,7 +59,7 @@ export default class CreateChat extends React.Component {
         >
           <form noValidate onSubmit={this.onSubmit.bind(this)} className="boxed-view__form1">
             <input type="name" ref="name" placeholder="Group Name" name="name" onChange={this.onChange.bind(this)} />
-            <input type="description" ref="description" placeholder="Description of the Group" name="description" onChange={this.onChange.bind(this)} />
+            <input type="description" ref="description" placeholder="Description of the Group" name="description" onChange={this.onChanger.bind(this)} />
             <button className="button">Create Group</button>
           </form>
         </Modal>

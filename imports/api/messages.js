@@ -55,5 +55,19 @@ Meteor.methods({
     }, {
       $set: { star }
     })
+  },
+  'messages.remove'(_id) {
+    if(!this.userId) {
+      throw new Meteor.Error('Not Authorized')
+    }
+
+    new SimpleSchema({
+      _id: {
+        type: String,
+        min: 1
+      }
+    }).validate({ _id });
+
+    Messages.remove({ _id, userId: this.userId });
   }
 })

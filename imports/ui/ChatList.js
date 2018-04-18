@@ -2,18 +2,28 @@ import React from "react";
 import { Tracker } from "meteor/tracker";
 import { Meteor } from "meteor/meteor";
 import { Messages } from "../api/messages";
-import FlipMove from 'react-flip-move'
-import Ionicon from 'react-ionicons'
+import { withTracker } from "meteor/react-meteor-data";
+import FlipMove from 'react-flip-move';
+import Ionicon from 'react-ionicons';
+import Modal from 'react-modal';
 
-export default class ChatList extends React.Component {
+export class ChatList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      messages: []
+      messages: [],
+      error: '',
+      isOpen: false
     }
   }
+  handleMessageRemoval() {
+    Meteor.call('messages.remove', this.props.message._id)
+  }
+  handleModalClose() {
+    return this.setState({ isOpen: false, error: '' })
+  }
   scrollToBottom() {
-    this.messagesEnd.scrollIntoView({ behavior: 'smooth' })
+    return this.messagesEnd.scrollIntoView({ behavior: 'smooth' })
   }
   componentDidUpdate() {
     this.scrollToBottom()
@@ -36,8 +46,23 @@ export default class ChatList extends React.Component {
       return (
         <div key={message._id} className="card">
           <div className="card-body">
-            <div className="stat2" onDragEnter={true}>
-              <Ionicon icon="ios-arrow-down" fontSize="2rem" />
+            <div className="stat2">
+              <Ionicon icon="ios-arrow-down" beat={true} className="ios-arrow-down" fontSize="2rem" onClick={() => this.setState({ isOpen: true })} />
+              <FlipMove
+                maintainContainerHeight={true}
+              >
+                <Modal
+                  isOpen={this.state.isOpen}
+                  onRequestClose={this.handleModalClose.bind(this)}
+                  ariaHideApp={false}
+                  className="boxed-view__box2 box-align1"
+                  overlayClassName="boxed-view1 boxed-view--modal1"
+                >
+                  <a className="button1">Star</a>
+                  <a className="button1">Copy</a>
+                  <a className="button1" onClick={() => Meteor.call('messages.remove', this.props.message._id)}>Delete</a>
+                </Modal>
+              </FlipMove>
             </div>
             <div className="stat1">
               <p className="card-text">{message.text}</p>
@@ -66,3 +91,12 @@ export default class ChatList extends React.Component {
     )
   }
 }
+
+export default withTracker(() => {
+  const selectedNoteId = Session.get('selectedNoteId');
+
+  return {
+    selectedNoteId,
+    message: Messages.findOne(selectedNoteId)
+  }
+})(ChatList)
