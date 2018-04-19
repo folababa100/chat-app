@@ -15,14 +15,14 @@ Tracker.autorun(() => {
 });
 
 Tracker.autorun(() => {
-  const selectedUserId = Session.get('selectedUserId');
+  const selectedMessageId = Session.get('selectedMessageId');
 
-  if (selectedUserId) {
-    browserHistory.replace(`chat/${selectedUserId}`);
+  if (selectedMessageId) {
+    browserHistory.replace(`chat/${selectedMessageId}`);
   }
 })
 
 Meteor.startup(() => {
-  Session.set('selectedUserId', undefined)
+  Session.set('selectedMessageId', undefined)
   ReactDOM.render(routes, document.getElementById('app'));
 });

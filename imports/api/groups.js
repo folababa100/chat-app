@@ -15,7 +15,7 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-  'groups.insert'(name, description) {
+  'groups.insert'(description) {
 
     new SimpleSchema({
       name: {

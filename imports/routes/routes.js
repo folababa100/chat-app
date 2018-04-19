@@ -7,14 +7,12 @@ import ChatDashboard from '../ui/ChatDashboard';
 import NotFound from '../ui/NotFound';
 import Login from '../ui/Login';
 import UserProfile from '../ui/UserProfile';
-import ChatRegister from '../ui/ChatRegister';
-import CreateChat from '../ui/CreateChat';
 
 const onEnterNotePage = (nextState) => {
-  Session.set('selectedNoteId', nextState.params.id);
+  Session.set('selectedMessageId', nextState.params.id);
 };
 const onLeaveNotePage = () => {
-  Session.set('selectedNoteId', undefined);
+  Session.set('selectedMessageId', undefined);
 };
 export const onAuthChange = (isAuthenticated, currentPagePrivacy) => {
   const isUnauthenticatedPage = currentPagePrivacy === 'unauth';
@@ -37,12 +35,11 @@ export const routes = (
   <Router history={browserHistory}>
     <Route onEnter={globalOnEnter} onChange={globalOnChange}>
       <Route path="/" component={Login} privacy="unauth"/>
-      <Route path="/create" component={CreateChat} privacy="auth"/>
       <Route path="/user/:id" component={UserProfile} privacy="auth"/>
       {/* <Route path="/register" component={ChatRegister} privacy="auth"/> */}
       <Route path="/signup" component={Signup} privacy="unauth"/>
       <Route path="/chat" component={ChatDashboard} privacy="auth"/>
-      <Route path="/chat/:id" component={ChatDashboard} privacy="auth" onEnter={onEnterNotePage} onLeave={onLeaveNotePage}/>
+      {/* <Route path="/chat/:id" component={ChatDashboard} privacy="auth" onEnter={onEnterNotePage} onLeave={onLeaveNotePage}/> */}
       <Route path="*" component={NotFound}/>
     </Route>
   </Router>

@@ -5,7 +5,7 @@ import Chat from './Chat';
 import ChatInput from './ChatInput';
 import SideBar from './SideBar'
 
-export default () => {
+export default ChatDashboard = () => {
   return (
     <div>
       <PrivateHeader title="Chat"/>

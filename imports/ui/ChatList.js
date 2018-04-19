@@ -45,7 +45,7 @@ export class ChatList extends React.Component {
                 >
                   <a className="button1">Star</a>
                   <a className="button1">Copy</a>
-                  <a className="button1" onClick={() => Meteor.call('messages.remove', this.props.message._id)}>Delete</a>
+                  <a className="button1" onMouseOver={this.handleMessageRemoval.bind(this)}>Delete</a>
                 </Modal>
               </FlipMove>
             </div>
@@ -73,10 +73,8 @@ ChatList.propTypes = {
 }
 
 export default withTracker(() => {
-  const selectedNoteId = Session.get('selectedNoteId');
 
   return {
-    selectedNoteId,
     call: Meteor.call
   }
 })(ChatList)
