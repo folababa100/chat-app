@@ -69,8 +69,7 @@ export class ChatList extends React.Component {
 }
 
 ChatList.propTypes = {
-  call: PropTypes.func.isRequired,
-  track: PropTypes.func.isRequired
+  call: PropTypes.func.isRequired
 }
 
 export default withTracker(() => {

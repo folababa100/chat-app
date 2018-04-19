@@ -21,11 +21,7 @@ Chat.propTypes = {
 export default withTracker(() => {
   Meteor.subscribe('messages')
   return {
-    messages: Messages.find({}, {
-      sort: {
-        whenMessageRecievied: 1
-      }
-    }).fetch().map((message) => {
+    messages: Messages.find().fetch().map((message) => {
       return {
         ...message
       }
