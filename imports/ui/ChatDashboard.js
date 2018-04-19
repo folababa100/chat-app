@@ -1,7 +1,7 @@
 import React from 'react';
 
 import PrivateHeader from './PrivateHeader';
-import ChatList from './ChatList';
+import Chat from './Chat';
 import ChatInput from './ChatInput';
 import SideBar from './SideBar'
 
@@ -13,7 +13,7 @@ export default () => {
         <SideBar/>
         <div className="page-content">
           <div className="page-content__flex">
-            <ChatList/>
+            <Chat/>
           </div>
           <ChatInput/>
         </div>

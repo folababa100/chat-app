@@ -16,9 +16,6 @@ if (Meteor.isServer) {
 
 Meteor.methods({
   'groups.insert'(name, description) {
-    if (!this.userId) {
-      throw Meteor.Error('Not Authorized user')
-    }
 
     new SimpleSchema({
       name: {

@@ -1,23 +1,21 @@
 import React from "react";
-import { Tracker } from "meteor/tracker";
 import { Meteor } from "meteor/meteor";
-import { Messages } from "../api/messages";
 import { withTracker } from "meteor/react-meteor-data";
 import FlipMove from 'react-flip-move';
 import Ionicon from 'react-ionicons';
 import Modal from 'react-modal';
+import PropTypes from 'prop-types'
 
 export class ChatList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      messages: [],
       error: '',
       isOpen: false
     }
   }
   handleMessageRemoval() {
-    Meteor.call('messages.remove', this.props.message._id)
+    this.props.call('messages.remove', this.props.message._id)
   }
   handleModalClose() {
     return this.setState({ isOpen: false, error: '' })
@@ -28,23 +26,10 @@ export class ChatList extends React.Component {
   componentDidUpdate() {
     this.scrollToBottom()
   }
-  componentDidMount() {
-    console.log('componentDidMount');
-    this.MessagesTracker = Tracker.autorun(() => {
-      Meteor.subscribe('messages');
-      const messages = Messages.find().fetch();
-      this.setState({ messages });
-    })
-    this.scrollToBottom()
-  }
-  componentWillUnmount() {
-    console.log('componentWillUnmount');
-    this.MessagesTracker.stop()
-  }
-  renderChatMessages() {
-    return this.state.messages.map((message) => {
-      return (
-        <div key={message._id} className="card">
+  render() {
+    return (
+      <div>
+        <div key={this.props.message._id} className="card">
           <div className="card-body">
             <div className="stat2">
               <Ionicon icon="ios-arrow-down" beat={true} className="ios-arrow-down" fontSize="2rem" onClick={() => this.setState({ isOpen: true })} />
@@ -65,23 +50,14 @@ export class ChatList extends React.Component {
               </FlipMove>
             </div>
             <div className="stat1">
-              <p className="card-text">{message.text}</p>
+              <p className="card-text">{this.props.message.text}</p>
             </div>
             <div className="stat">
-              <p className="card-recieved">{message.whenMessageRecievied}</p>
+              <p className="card-recieved">{this.props.message.whenMessageRecievied}</p>
               <p className="card-username">{Meteor.user().username}</p>
             </div>
           </div>
         </div>
-      )
-    })
-  }
-  render() {
-    return (
-      <div>
-        <FlipMove maintainContainerHeight={true}>
-          {this.renderChatMessages()}
-        </FlipMove>
         <div
           style={{ float: "left", clear: "both" }}
           ref={(el) => { this.messagesEnd = el; }}
@@ -92,11 +68,16 @@ export class ChatList extends React.Component {
   }
 }
 
+ChatList.propTypes = {
+  call: PropTypes.func.isRequired,
+  track: PropTypes.func.isRequired
+}
+
 export default withTracker(() => {
   const selectedNoteId = Session.get('selectedNoteId');
 
   return {
     selectedNoteId,
-    message: Messages.findOne(selectedNoteId)
+    call: Meteor.call
   }
 })(ChatList)

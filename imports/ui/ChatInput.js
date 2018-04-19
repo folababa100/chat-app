@@ -1,7 +1,9 @@
 import React from "react";
 import { Meteor } from "meteor/meteor";
+import { withTracker } from "meteor/react-meteor-data";
+import PropTypes from "prop-types";
 
-export default class ChatInput extends React.Component {
+export class ChatInput extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,7 +14,7 @@ export default class ChatInput extends React.Component {
   onSubmit(e) {
     const { text } = this.state;
     e.preventDefault();
-    Meteor.call("messages.insert", text, (err, res) => {
+    this.props.call("messages.insert", text, (err, res) => {
       if (!err) {
         this.setState({ error: '', text: '' })
       } else {
@@ -37,10 +39,18 @@ export default class ChatInput extends React.Component {
             value={this.state.text} 
             className="page-content__input"
           />
-          {/* <button className="button button__mar">Send</button> */}
-          {/* <button className="button">Send Location</button> */}
         </form>
       </div>
     )
   }
 }
+
+ChatInput.propTypes = {
+  call: PropTypes.func.isRequired
+}
+
+export default withTracker(() => {
+  return {
+    call: Meteor.call
+  }
+})(ChatInput)
