@@ -24,10 +24,7 @@ export default class JoinChat extends React.Component {
       return (
         <div key={group._id}>
           <div>
-            <p>{group.name}</p>
             <p>{group.description}</p>
-            <p>{group.createdBy}</p>
-            <p>{group.dateCreated}</p>
           </div>
         </div>
       )

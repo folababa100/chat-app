@@ -28,20 +28,39 @@ export class ChatInput extends React.Component {
     })
   }
   render() {
-    return (
-      <div className="page-content__footer">
-        <form onSubmit={this.onSubmit.bind(this)} className="boxed-view__form">
-          <input 
-            type="text" 
-            placeholder="Type a message and hit Enter"
-            ref="text"
-            onChange={this.onChange.bind(this)}
-            value={this.state.text} 
-            className="page-content__input"
-          />
-        </form>
-      </div>
-    )
+    if (this.state.text.length >= 1) {
+      return (
+        <div className="page-content__footer">
+          <form onSubmit={this.onSubmit.bind(this)} className="boxed-view__form">
+            <input 
+              type="text" 
+              placeholder="Type a message and hit Enter"
+              ref="text"
+              onChange={this.onChange.bind(this)}
+              value={this.state.text} 
+              className="page-content__input"
+            />
+            <button className="button">Send</button>
+          </form>
+        </div>
+      )
+    } else {
+      return (
+        <div className="page-content__footer">
+          <form onSubmit={this.onSubmit.bind(this)} className="boxed-view__form">
+            <input 
+              type="text" 
+              placeholder="Type a message and hit Enter"
+              ref="text"
+              onChange={this.onChange.bind(this)}
+              value={this.state.text} 
+              className="page-content__input"
+            />
+            <button className="button">Record</button>
+          </form>
+        </div>
+      )
+    }
   }
 }
 

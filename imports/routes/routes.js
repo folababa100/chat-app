@@ -6,7 +6,9 @@ import Signup from '../ui/Signup';
 import ChatDashboard from '../ui/ChatDashboard';
 import NotFound from '../ui/NotFound';
 import Login from '../ui/Login';
+import Group from "../ui/Group";
 import UserProfile from '../ui/UserProfile';
+import JoinChat from "../ui/JoinChat";
 
 const onEnterNotePage = (nextState) => {
   Session.set('selectedMessageId', nextState.params.id);
@@ -39,6 +41,8 @@ export const routes = (
       {/* <Route path="/register" component={ChatRegister} privacy="auth"/> */}
       <Route path="/signup" component={Signup} privacy="unauth"/>
       <Route path="/chat" component={ChatDashboard} privacy="auth"/>
+      <Route path="/join" component={JoinChat} privacy="auth"/>
+      <Route path="/group" component={Group} privacy="auth"/>
       {/* <Route path="/chat/:id" component={ChatDashboard} privacy="auth" onEnter={onEnterNotePage} onLeave={onLeaveNotePage}/> */}
       <Route path="*" component={NotFound}/>
     </Route>

@@ -1,10 +1,7 @@
 import { Meteor } from "meteor/meteor";
 import { Mongo } from "meteor/mongo";
 import SimpleSchema from "simpl-schema";
-import uuid from 'uuid';
 import moment from 'moment'
-
-import { GroupMembers } from "./group-members";
 
 export const Groups = new Mongo.Collection('groups');
 
@@ -18,10 +15,6 @@ Meteor.methods({
   'groups.insert'(description) {
 
     new SimpleSchema({
-      name: {
-        type: String,
-        min: 4
-      },
       description: {
         type: String,
         min: 10
@@ -29,18 +22,17 @@ Meteor.methods({
       isPublic: {
         type: Boolean
       }
-    }).validate({ name, description })
+    }).validate({ description })
 
-    let chatRoomId = Groups.insert({
-      name,
+    return Groups.insert({
       description,
       createdBy: Meteor.user().username,
       dateCreated: moment().format('LLL'),
       isPublic: false
     })
 
-    if (chatRoomId) {
-      return GroupMembers.insert({ chatRoomId: chatRoomId, userId: Meteor.userId() })
-    }
+    // if (chatRoomId) {
+    //   return GroupMembers.insert({ chatRoomId: chatRoomId, userId: Meteor.userId() })
+    // }
   }
 })

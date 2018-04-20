@@ -6,15 +6,28 @@ import ChatList from './ChatList';
 import PropTypes from 'prop-types';
 import ChatEmpty from './ChatEmpty';
 
-const Chat = (props) => {
-  return (
-    <div>
-      { props.messages.length === 0 ? <ChatEmpty/> : undefined }
-      {props.messages.map((message) => {
-        return <ChatList key={message._id} message={message}/>
-      })}
-    </div>
-  )
+export class Chat extends React.Component {
+  scrollToBottom() {
+    return this.messagesEnd.scrollIntoView({ behavior: 'smooth' })
+  }
+  componentDidUpdate() {
+    this.scrollToBottom()
+  }
+  render() {
+    return (
+      <div>
+        {this.props.messages.length === 0 ? <ChatEmpty /> : undefined}
+        {this.props.messages.map((message) => {
+          return <ChatList key={message._id} message={message} />
+        })}
+        <div
+          style={{ float: "left", clear: "both" }}
+          ref={(el) => { this.messagesEnd = el; }}
+        >
+        </div>
+      </div>
+    )
+  }
 }
 
 Chat.propTypes = {

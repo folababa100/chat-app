@@ -4,7 +4,7 @@ import { withTracker } from "meteor/react-meteor-data";
 import FlipMove from 'react-flip-move';
 import Ionicon from 'react-ionicons';
 import Modal from 'react-modal';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
 export class ChatList extends React.Component {
   constructor(props) {
@@ -20,12 +20,6 @@ export class ChatList extends React.Component {
   handleModalClose() {
     return this.setState({ isOpen: false, error: '' })
   }
-  scrollToBottom() {
-    return this.messagesEnd.scrollIntoView({ behavior: 'smooth' })
-  }
-  componentDidUpdate() {
-    this.scrollToBottom()
-  }
   render() {
     return (
       <div>
@@ -33,21 +27,18 @@ export class ChatList extends React.Component {
           <div className="card-body">
             <div className="stat2">
               <Ionicon icon="ios-arrow-down" beat={true} className="ios-arrow-down" fontSize="2rem" onClick={() => this.setState({ isOpen: true })} />
-              <FlipMove
-                maintainContainerHeight={true}
+              {/* <a className="button1" ref="copy" data-clipboard-text={this.props.message.text} id="btn">Copy</a> */}
+              <Modal
+                isOpen={this.state.isOpen}
+                onRequestClose={this.handleModalClose.bind(this)}
+                ariaHideApp={false}
+                className="boxed-view__box2 box-align1"
+                overlayClassName="boxed-view1 boxed-view--modal1"
               >
-                <Modal
-                  isOpen={this.state.isOpen}
-                  onRequestClose={this.handleModalClose.bind(this)}
-                  ariaHideApp={false}
-                  className="boxed-view__box2 box-align1"
-                  overlayClassName="boxed-view1 boxed-view--modal1"
-                >
-                  <a className="button1">Star</a>
-                  <a className="button1">Copy</a>
-                  <a className="button1" onMouseOver={this.handleMessageRemoval.bind(this)}>Delete</a>
-                </Modal>
-              </FlipMove>
+                <a className="button1">Copy</a>
+                <a className="button1">Star</a>
+                <a className="button1" onClick={this.handleMessageRemoval.bind(this)}>Delete</a>
+              </Modal>
             </div>
             <div className="stat1">
               <p className="card-text">{this.props.message.text}</p>
@@ -57,11 +48,6 @@ export class ChatList extends React.Component {
               <p className="card-username">{Meteor.user().username}</p>
             </div>
           </div>
-        </div>
-        <div
-          style={{ float: "left", clear: "both" }}
-          ref={(el) => { this.messagesEnd = el; }}
-        >
         </div>
       </div>
     )
