@@ -1,6 +1,5 @@
 import React from 'react';
 
-import PrivateHeader from './PrivateHeader';
 import Chat from './Chat';
 import ChatInput from './ChatInput';
 import SideBar from './SideBar'
@@ -8,7 +7,6 @@ import SideBar from './SideBar'
 export default ChatDashboard = () => {
   return (
     <div>
-      <PrivateHeader title="Chat"/>
       <div className="chat-container__fluid">
         <SideBar/>
         <div className="page-content">

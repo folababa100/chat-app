@@ -4,6 +4,12 @@
   height: $nav-space;
 }
 
+.header1 {
+  background: $nav-grey;
+  color: $header-color;
+  height: $nav-space;
+}
+
 .header__content {
   display: flex;
   justify-content: space-between;

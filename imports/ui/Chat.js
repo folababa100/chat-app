@@ -5,6 +5,7 @@ import { Session } from "meteor/session";
 import ChatList from './ChatList';
 import PropTypes from 'prop-types';
 import ChatEmpty from './ChatEmpty';
+import PrivateHeader from './PrivateHeader'
 
 export class Chat extends React.Component {
   scrollToBottom() {
@@ -16,6 +17,7 @@ export class Chat extends React.Component {
   render() {
     return (
       <div>
+        <PrivateHeader/>
         {this.props.messages.length === 0 ? <ChatEmpty /> : undefined}
         {this.props.messages.map((message) => {
           return <ChatList key={message._id} message={message} />

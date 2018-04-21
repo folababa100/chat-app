@@ -1,9 +1,16 @@
 import React from 'react';
 import Ionicon from 'react-ionicons';
+import { Messages } from "../api/messages";
+import { withTracker } from "meteor/react-meteor-data";
+import { Meteor } from "meteor/meteor";
 
-export default class SearchBar extends React.Component {
+export class SearchBar extends React.Component {
   constructor(props) {
     super(props);
+  }
+  onChange(e) {
+    e.preventDefault()
+
   }
   render() {
     return (
@@ -16,3 +23,10 @@ export default class SearchBar extends React.Component {
     )
   }
 }
+
+export default withTracker(() => {
+  Meteor.subscribe('messages')
+  return {
+    messages: Messages.find().fetch()
+  }
+})(SearchBar)

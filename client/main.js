@@ -24,5 +24,6 @@ Tracker.autorun(() => {
 
 Meteor.startup(() => {
   Session.set('selectedMessageId', undefined)
+  Session.set('showStarMessage', false)
   ReactDOM.render(routes, document.getElementById('app'));
 });

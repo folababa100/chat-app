@@ -2,6 +2,7 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import Clipboard from 'clipboard';
 import { withTracker } from "meteor/react-meteor-data";
+import PropTypes from 'prop-types'
 
 export class Group extends React.Component {
   constructor(props) {
@@ -39,6 +40,10 @@ export class Group extends React.Component {
       </div>
     )
   }
+}
+
+Group.propTypes = {
+  call: PropTypes.func.isRequired
 }
 
 export default withTracker(() => {

@@ -1,12 +1,13 @@
 import React from 'react';
 import Modal from 'react-modal';
 import PropTypes from 'prop-types';
-import { Accounts } from 'meteor/accounts-base';
+import { Meteor } from "meteor/meteor";
 import Ionicon from 'react-ionicons';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Link } from 'react-router';
+import { Messages } from "../api/messages";
 
-export default class Header extends React.Component {
+export class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -21,6 +22,7 @@ export default class Header extends React.Component {
     return (
       <div>
         <Ionicon className="icon__search1" icon="md-more" onClick={() => this.setState({ isOpen: true })} fontSize="35px" color="#fff" beat={true}/>
+        {/* <p>{this.props.messages.length + ' messages'}</p> */}
         <Modal
           isOpen={this.state.isOpen}
           onRequestClose={this.handleModalClose.bind(this)}
@@ -38,6 +40,9 @@ export default class Header extends React.Component {
   }
 }
 
-// Header.PropTypes = {
-//   title: PropTypes.string.isRequired
-// }
+export default withTracker(() => {
+  Meteor.subscribe('messages')
+  return {
+    messages: Messages.find().fetch()
+  }
+})(Header)
