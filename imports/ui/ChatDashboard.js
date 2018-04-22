@@ -8,12 +8,12 @@ export default ChatDashboard = () => {
   return (
     <div>
       <div className="chat-container__fluid">
-        <SideBar/>
+        <SideBar />
         <div className="page-content">
           <div className="page-content__flex">
-            <Chat/>
+            <Chat />
           </div>
-          <ChatInput/>
+          <ChatInput />
         </div>
       </div>
     </div>

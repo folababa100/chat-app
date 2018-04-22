@@ -13,6 +13,14 @@
   white-space: pre-wrap;
 }
 
+.icon1 {
+  flex-grow: 1;
+}
+
+.icon2 {
+  flex: none;
+}
+
 .card-body {
   box-shadow: $box;
   border-radius: 0.7rem;

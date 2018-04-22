@@ -1,13 +1,39 @@
 .header {
-  background: $nav-grey;
+  background: #eeeeee;
   color: $header-color;
   height: $nav-space;
+  width: 100%;
+  flex: none;
+  width: 100%;
+  box-sizing: border-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  position: relative;
+  z-index: 1000;
+  -webkit-justify-content: flex-end;
+  justify-content: flex-end;
+  padding: 10px 16px;
 }
 
 .header1 {
-  background: $nav-grey;
+  background: #eeeeee;
+  padding: 10px 16px;
   color: $header-color;
   height: $nav-space;
+  width: 100%;
+  flex: none;
+  width: 100%;
+  box-sizing: border-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  position: relative;
+  z-index: 1000;
+  -webkit-justify-content: flex-end;
+  justify-content: flex-end;
 }
 
 .header__content {

@@ -17,15 +17,17 @@ export class Chat extends React.Component {
   render() {
     return (
       <div>
-        <PrivateHeader/>
-        {this.props.messages.length === 0 ? <ChatEmpty /> : undefined}
-        {this.props.messages.map((message) => {
-          return <ChatList key={message._id} message={message} />
-        })}
-        <div
-          style={{ float: "left", clear: "both" }}
-          ref={(el) => { this.messagesEnd = el; }}
-        >
+        <PrivateHeader />
+        <div className="page-content__padding">
+          {this.props.messages.length === 0 ? <ChatEmpty /> : undefined}
+          {this.props.messages.map((message) => {
+            return <ChatList key={message._id} message={message} />
+          })}
+          <div
+            style={{ float: "left", clear: "both" }}
+            ref={(el) => { this.messagesEnd = el; }}
+          >
+          </div>
         </div>
       </div>
     )
