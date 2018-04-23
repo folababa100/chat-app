@@ -11,7 +11,8 @@ export class ChatList extends React.Component {
     super(props);
     this.state = {
       error: '',
-      isOpen: false
+      isOpen: false,
+      hover: false
     }
   }
   handleMessageRemoval() {
@@ -24,22 +25,29 @@ export class ChatList extends React.Component {
     return (
       <div>
         <div key={this.props.message._id} className="card">
-          <div className="card-body">
-            <div className="stat2">
-              <Ionicon icon="ios-arrow-down" beat={true} className="ios-arrow-down" fontSize="2rem" onClick={() => this.setState({ isOpen: true })} />
-              {/* <a className="button1" ref="copy" data-clipboard-text={this.props.message.text} id="btn">Copy</a> */}
-              <Modal
-                isOpen={this.state.isOpen}
-                onRequestClose={this.handleModalClose.bind(this)}
-                ariaHideApp={false}
-                className="boxed-view__box2 box-align1"
-                overlayClassName="boxed-view1 boxed-view--modal1"
-              >
-                <a className="button1">Copy</a>
-                <a className="button1">Star</a>
-                <a className="button1" onClick={this.handleMessageRemoval.bind(this)}>Delete</a>
-              </Modal>
-            </div>
+          <div
+           className="card-body" 
+           onMouseEnter={() => this.setState({ hover: true })} 
+           onMouseLeave={() => this.setState({ hover: false })}>
+            {
+              this.state.hover === true ? (
+                <div className="stat2">
+                  <Ionicon icon="ios-arrow-down" beat={true} className="ios-arrow-down" fontSize="2rem" onClick={() => this.setState({ isOpen: true })} />
+                  {/* <a className="button1" ref="copy" data-clipboard-text={this.props.message.text} id="btn">Copy</a> */}
+                  <Modal
+                    isOpen={this.state.isOpen}
+                    onRequestClose={this.handleModalClose.bind(this)}
+                    ariaHideApp={false}
+                    className="boxed-view__box2 box-align1"
+                    overlayClassName="boxed-view1 boxed-view--modal1"
+                  >
+                    <a className="button1">Copy</a>
+                    <a className="button1">Star</a>
+                    <a className="button1" onClick={this.handleMessageRemoval.bind(this)}>Delete</a>
+                  </Modal>
+                </div>
+              ) : undefined
+            }
             <div className="stat1">
               <p className="card-text">{this.props.message.text}</p>
             </div>

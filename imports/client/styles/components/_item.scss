@@ -30,6 +30,7 @@
   display: flex;
   flex-direction: column;
   color: #000;
+  cursor: pointer;
 }
 
 .card-text {
@@ -42,10 +43,6 @@
   flex-direction: row-reverse;
   justify-content: space-between;
   color: $dark-grey3;
-}
-
-.stat1 {
-  margin-top: -7%;
 }
 
 .stat2 {

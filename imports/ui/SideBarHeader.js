@@ -21,26 +21,21 @@ export class SideBarHeader extends React.Component {
   render() {
     return (
       <div className="header">
-        <div className="header__content">
-          <div className="icon1">
-            <Ionicon className="icon__search1" icon="md-more" onClick={() => this.setState({ isOpen: true })} fontSize="35px" color="#fff" beat={true} />
-          </div>
-          <div className="icon2">
-            <Ionicon className="icon__search1" icon="md-more" onClick={() => this.setState({ isOpen: true })} fontSize="35px" color="#fff" beat={true} />
-            {/* <p>{this.props.messages.length + ' messages'}</p> */}
-            <Modal
-              isOpen={this.state.isOpen}
-              onRequestClose={this.handleModalClose.bind(this)}
-              ariaHideApp={false}
-              className="boxed-view__box1 box-align"
-              overlayClassName="boxed-view1 boxed-view--modal1"
-            >
-              <Link className="a button1" to="/create">New Group</Link>
-              <a className="button1">Starred Messages</a>
-              <a className="button1">Settings</a>
-              <a className="button1" onClick={() => Accounts.logout()}>Logout</a>
-            </Modal>
-          </div>
+        <div className="icon2">
+          <Ionicon className="icon__search1" icon="md-more" onClick={() => this.setState({ isOpen: true })} fontSize="35px" color="#fff" beat={true} />
+          {/* <p>{this.props.messages.length + ' messages'}</p> */}
+          <Modal
+            isOpen={this.state.isOpen}
+            onRequestClose={this.handleModalClose.bind(this)}
+            ariaHideApp={false}
+            className="boxed-view__box1 box-align"
+            overlayClassName="boxed-view1 boxed-view--modal1"
+          >
+            <Link className="a button1" to="/create">New Group</Link>
+            <a className="button1">Starred Messages</a>
+            <a className="button1">Settings</a>
+            <a className="button1" onClick={() => Accounts.logout()}>Logout</a>
+          </Modal>
         </div>
       </div>
     )
