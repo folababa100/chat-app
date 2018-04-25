@@ -1,18 +1,18 @@
 .boxed-view {
-  align-items: center;
+  align-items: $center;
   background: $boxed-view-overlay-bg;
   display: flex;
-  justify-content: center;
-  height: 100vh;
+  justify-content: $center;
+  height: $fullh;
   width: 100vw;
 }
 
 .boxed-view1 {
   background: $boxed-view-overlay-bg;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
+  align-items: $center;
+  justify-content: $center;
+  height: $fullh;
   width: 100vw;
 }
 
@@ -37,13 +37,13 @@
 .boxed-view__box {
   background-color: $boxed-view-bg;
   padding: 2.4rem;
-  text-align: center;
+  text-align: $center;
   width: 24rem;
 }
 
 .boxed-view__box1 {
   background: white;
-  text-align: center;
+  text-align: $center;
   box-shadow: $box;
   width: 14rem;
   position: absolute;
@@ -54,7 +54,7 @@
 
 .boxed-view__box2 {
   background: white;
-  text-align: center;
+  text-align: $center;
   box-shadow: $box;
   width: 9rem;
   position: absolute;

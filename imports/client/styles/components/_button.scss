@@ -1,6 +1,6 @@
 .button {
   background-color: $button-bg;
-  border: none;
+  border: $none;
   color: $button-color;
   cursor: pointer;
   font-size: $base-font-size;
@@ -10,7 +10,7 @@
 
 .button1 {
   display: block;
-  width: 100%;
+  width: $fullp;
   padding: 1.5rem 1.5rem;
   clear: both;
   font-weight: 400;
@@ -38,7 +38,7 @@
 
 .button--link {
   display: inline-block;
-  text-decoration: none;
+  text-decoration: $none;
 }
 
 .button--pill {
@@ -56,11 +56,11 @@
 }
 
 .button--link-text {
-  background: none;
+  background: $none;
   margin: 0;
   padding: 0;
   text-decoration: underline;
-  text-transform: none;
+  text-transform: $none;
 }
 
 .button__mar {

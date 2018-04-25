@@ -18,7 +18,7 @@
 }
 
 .icon2 {
-  flex: none;
+  flex: $none;
 }
 
 .card-body {
@@ -43,11 +43,12 @@
   flex-direction: row-reverse;
   justify-content: space-between;
   color: $dark-grey3;
+  margin-top: 4px;
 }
 
 .stat2 {
-  display: flex;
-  justify-content: flex-end;
+  position: absolute;
+  left: 60rem;
 }
 
 .icon__search {
@@ -72,6 +73,6 @@
 .item__status-message {
   color: $item-text-color;
   font-style: italic;
-  text-align: center;
+  text-align: $center;
   margin: 0;
 }
