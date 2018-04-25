@@ -30,6 +30,16 @@
   justify-content: center;
 }
 
+.page-content__flex::-webkit-scrollbar {
+  width: 6px;
+}
+
+.page-content__flex::-webkit-scrollbar-thumb {
+  background: #c5c5c5;
+  border-radius: 1em;
+  cursor: grab;
+}
+
 .page-content__flex {
   flex-grow: 1;
   overflow-y: scroll;
